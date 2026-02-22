@@ -9,7 +9,9 @@ interface Props {
   }>;
 }
 
-export async function generateMetadata( { params }: { params: { id: string } } ): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: Promise<{ id: string }> }
+): Promise<Metadata> {
   const { id } = await params;
   const note = await fetchNoteById(id);
 
@@ -28,7 +30,6 @@ export async function generateMetadata( { params }: { params: { id: string } } )
     },
   };
 }
-
 export default async function NoteDetailsPage({ params }: Props) {
   const { id } = await params;
 

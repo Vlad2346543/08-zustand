@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, modal }: Props) {
   return (
     <html lang="en">
-      <body>
+      <body className={roboto.variable}>
         <TanStackProvider>
           <Header />
           {children}
