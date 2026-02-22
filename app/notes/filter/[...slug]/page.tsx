@@ -9,9 +9,10 @@ interface Props {
   }>;
 }
 export async function generateMetadata(
-  { params }: { params: { slug?: string[] } }
+  { params }: { params: Promise<{ slug: string[] }> }
 ): Promise<Metadata> {
-  const tag = params.slug?.[0] ?? 'all';
+  const { slug } = await params;
+  const tag = slug?.[0] ?? 'all';
 
   return {
     title: `Notes: ${tag} | NoteHub`,
@@ -28,7 +29,6 @@ export async function generateMetadata(
     },
   };
 }
-
 export default async function FilteredNotesPage({ params }: Props) {
   const { slug } = await params;
 
